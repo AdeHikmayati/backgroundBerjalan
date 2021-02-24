@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas-Background Berjalan</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+
+    <script>
+        var bg= new Image();
+        bg.src="hutan.jpg"
+var canvas= document.getElementById("canvas");
+var ctx=canvas.getContext('2d');
+canvas.width=canvas.scrollWidth;
+canvas.height=canvas.scrollHeight;
+
+var canvasWidth= canvas.width;
+var canvasHeight=canvas.height;
+function Mulai(){
+    function back(){
+        this.x =0;
+        this.render=function(){
+            ctx.drawImage(bg, this.x--,0);
+            if(this.x==-1599){
+                this.x=0;
+
+            }
+
+        }
+    }
+    var latar=new back();
+function animasi(){
+    ctx.save();
+    ctx.clearRect(0,0,canvasWidth,canvasHeight);
+latar.render();
+    ctx.restore();
+}
+setInterval(animasi,30);
+}
+window.addEventListener('load', function(event){
+    Mulai();
+})
+    </script>
+</body>
+</html>
